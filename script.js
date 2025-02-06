@@ -17,13 +17,19 @@ const material = new THREE.MeshStandardMaterial({ color: 0x777777, metalness: 0.
 const table = new THREE.Mesh(geometry, material);
 scene.add(table);
 
+const table2 = new THREE.Mesh(geometry, material);
+scene.add(table2);
+table2.scale.set(0,0,0);
+
 // Position the table
 table.position.set(0, 0.1, 0); // Raise the table higher
+table2.position.set(0, 2.6, 0)
 
 // Load Gaming Chair Models
 const loader = new GLTFLoader();
 let chair1, chair2, chair3; // Variables to store the chair models
-let pcModel, monitorModel, headsetModel, monitorModel2, monitorModel3; // Variables to store the new models
+let pcModel, monitorModel, headsetModel, monitorModel2, monitorModel3; 
+let pcModel1, pcModel2, pcModel3;
 // Get the hero section
 
 // Load gaming chair models
@@ -59,11 +65,33 @@ loader.load('models/gaming_chair.glb', function (gltf) {
 
 // Load PC and monitor models
 loader.load('models/black_pc.glb', function (gltf) {
-    pcModel = gltf.scene;
+    pcModel = gltf.scene.clone();
     pcModel.scale.set(0,0,0);
     pcModel.rotation.set(0,0,0)
     pcModel.position.set(-2, 0.2, 0.1); // Position the PC on the left side of the table
     scene.add(pcModel);
+
+    
+    pcModel1 = gltf.scene.clone();
+    pcModel1.scale.set(0,0,0);
+    pcModel1.rotation.set(0,4.7,0)
+    pcModel1.position.set(3,2.6,0); // Position the PC on the left side of the table
+    scene.add(pcModel1);
+    
+    pcModel2 = gltf.scene.clone();
+    pcModel2.scale.set(0,0,0);
+    pcModel2.rotation.set(0,4.7,0)
+    pcModel2.position.set(-3,2.6,0);; // Position the PC on the left side of the table
+    scene.add(pcModel2);
+
+    pcModel3 = gltf.scene.clone();
+    pcModel3.scale.set(0,0,0);
+    pcModel3.rotation.set(0,4.7,0)
+    pcModel3.position.set(0,2.6,0); // Position the PC on the left side of the table
+    scene.add(pcModel3);
+
+
+
 });
 
 loader.load('models/monitor.glb', function (gltf) {
@@ -188,6 +216,13 @@ textRight.addEventListener('mouseenter', () => {
     gsap.to(chair3.position, { duration: 0.5, x: 2.6, ease: "power2.out" });
     gsap.to(chair3.scale, { duration: 0.5, x: 0.1, y: 0.1, z: 0.1, ease: "power2.out" });
 
+    
+    gsap.to(pcModel1.scale, { duration: 0.5, x: 1.5, y: 1.5, z: 1.5, ease: "power2.out" });
+    gsap.to(pcModel2.scale, { duration: 0.5, x: 1.5, y: 1.5, z: 1.5, ease: "power2.out" });
+    gsap.to(pcModel3.scale, { duration: 0.5, x: 1.5, y: 1.5, z: 1.5, ease: "power2.out" });
+
+    gsap.to(table2.scale, { duration: 0.5, x: 1.2, y: 0.8, z: 1, ease: "power2.out" });
+
     // Background transition effect
     heroSection.classList.add('pacman-hover');
 });
@@ -214,6 +249,13 @@ textRight.addEventListener('mouseleave', () => {
 
     // Reset monitorModel scale
     gsap.to(monitorModel.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
+
+    gsap.to(pcModel1.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
+    gsap.to(pcModel2.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
+    gsap.to(pcModel3.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
+
+    gsap.to(table2.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
+
 
     // Remove background transition effect
     heroSection.classList.remove('pacman-hover');
