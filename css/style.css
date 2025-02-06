@@ -703,20 +703,27 @@ header .header-col.mid .social-icons {
   width: 100%;
   height: 100vh;
   display: flex;
+  overflow: visible;
   justify-content: center;
   align-items: center;
   background: radial-gradient(circle at bottom center, #e0e0e0, #a0a0a0, #606060, #303030);
   position: relative;
   transition: background 5s ease-in-out;
 }
+
+/* Default background */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at bottom center, #e0e0e0, #a0a0a0, #606060, #303030); /* Replace with default background */
+  background: radial-gradient(circle at bottom center, #e0e0e0, #a0a0a0, #606060, #303030),radial-gradient(circle at bottom center, #e0e0e0, #a0a0a0, #606060, #303030), 
+  radial-gradient(circle at 20% 90%, rgba(0, 0, 0, 0.7), transparent 70%),
+  radial-gradient(circle at 80% 90%, rgba(0, 0, 0, 0.7), transparent 70%); 
+  background-blend-mode: overlay;
+  background-size: cover;/* Replace with default background */
   background-size: cover;
   background-position: center;
-  transition: background 2s ease-in-out; /* Smooth fade effect */
+  transition: background 2s ease-in-out;
   z-index: -1;
   opacity: 1;
 }
@@ -726,13 +733,23 @@ header .header-col.mid .social-icons {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("https://img.freepik.com/premium-photo/abstract-yellow-background-web-design-templates-product-studio-with-smooth-gradient-color_570543-9094.jpg");
+  background: url("/images/bg2.png");
   background-size: cover;
   background-position: center;
-  transition: opacity 5s ease-in-out; /* Smooth fade effect */
+  transition: opacity 5s ease-in-out;
   z-index: -1;
   opacity: 0;
 }
+
+/* Black vignette effect at the bottom left and right */
+.hero::before {
+  background: radial-gradient(circle at bottom center, #e0e0e0, #a0a0a0, #606060, #303030), 
+    radial-gradient(circle at 20% 90%, rgba(0, 0, 0, 0.7), transparent 70%),
+    radial-gradient(circle at 80% 90%, rgba(0, 0, 0, 0.7), transparent 70%);
+  background-blend-mode: overlay;
+  background-size: cover;
+}
+
 
 /* On hover, fade out old bg and fade in new bg */
 .hero.pacman-hover::before {
@@ -743,7 +760,7 @@ header .header-col.mid .social-icons {
   opacity: 1;
 }
 .hero.pacman-hover {
-  background: url("https://img.freepik.com/premium-photo/3d-black-scientific-podium-with-yellow-neon-lights_167650-6791.jpg");
+  background: url("/images/bg2.png");
   background-size: cover;
   transition: background 5s ease-in-out;
 }
@@ -755,16 +772,34 @@ header .header-col.mid .social-icons {
 .text-left, .text-right {
   position: absolute;
   bottom: 20px;
-  margin: 50px 50px;
+  margin: 15px 50px;
   font-family: "Oxanium", serif;
-    font-weight: 600;
-    font-style: normal;
-    text-transform: uppercase;
+  font-style: normal;
+  text-transform: uppercase;
   color: #fff;
+  cursor: pointer;
   font-size: 65px;
+  padding: 20px;
   font-weight: 800;
   width: 500px;
+  height: 200px; /* Add a height to ensure the element is visible */
+  background: linear-gradient(to bottom, #000000, #FFD700); /* Black to Deep Yellow gradient */
+  transition: transform 0.3s ease, text-shadow 0.5s ease;
+  
 }
+
+/* Hover effect */
+.text-left:hover, .text-right:hover {
+  transform: translateY(-20px); /* Move the text up */
+  text-shadow: 
+   
+    0 0 20px #d3d3d34b; /* Reduced glowing effect */
+  
+}
+
+/* Animation for glow */
+
+
 
 /* Positioning texts */
 .text-left {
