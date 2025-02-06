@@ -29,7 +29,7 @@ table2.position.set(0, 2.6, 0)
 const loader = new GLTFLoader();
 let chair1, chair2, chair3; // Variables to store the chair models
 let pcModel, monitorModel, headsetModel, monitorModel2, monitorModel3; 
-let pcModel1, pcModel2, pcModel3;
+let pcModel1, pcModel2, pcModel3, pcWhite;
 // Get the hero section
 
 // Load gaming chair models
@@ -81,7 +81,7 @@ loader.load('models/black_pc.glb', function (gltf) {
     pcModel2 = gltf.scene.clone();
     pcModel2.scale.set(0,0,0);
     pcModel2.rotation.set(0,4.7,0)
-    pcModel2.position.set(-3,2.6,0);; // Position the PC on the left side of the table
+    pcModel2.position.set(-3,2.6,0); // Position the PC on the left side of the table
     scene.add(pcModel2);
 
     pcModel3 = gltf.scene.clone();
@@ -93,7 +93,14 @@ loader.load('models/black_pc.glb', function (gltf) {
 
 
 });
+loader.load('models/pc3.glb', function (gltf) {
+    pcWhite = gltf.scene.clone();
+    pcWhite.scale.set(-6,0,0);
+    pcWhite.rotation.set(0,1.6,0);
+    pcWhite.position.set(-3,2.6,0); // Position the PC on the left side of the table
+    scene.add(pcWhite);
 
+});
 loader.load('models/monitor.glb', function (gltf) {
     // Monitor Model 1
     monitorModel = gltf.scene.clone();
@@ -218,7 +225,7 @@ textRight.addEventListener('mouseenter', () => {
 
     
     gsap.to(pcModel1.scale, { duration: 0.5, x: 1.5, y: 1.5, z: 1.5, ease: "power2.out" });
-    gsap.to(pcModel2.scale, { duration: 0.5, x: 1.5, y: 1.5, z: 1.5, ease: "power2.out" });
+    gsap.to(pcWhite.scale, { duration: 0.5, x: 0.5, y: 0.5, z: 0.6, ease: "power2.out" });
     gsap.to(pcModel3.scale, { duration: 0.5, x: 1.5, y: 1.5, z: 1.5, ease: "power2.out" });
 
     gsap.to(table2.scale, { duration: 0.5, x: 1.2, y: 0.8, z: 1, ease: "power2.out" });
@@ -251,7 +258,7 @@ textRight.addEventListener('mouseleave', () => {
     gsap.to(monitorModel.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
 
     gsap.to(pcModel1.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
-    gsap.to(pcModel2.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
+    gsap.to(pcWhite.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
     gsap.to(pcModel3.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
 
     gsap.to(table2.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
