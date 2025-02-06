@@ -29,7 +29,7 @@ table2.position.set(0, 2.6, 0)
 const loader = new GLTFLoader();
 let chair1, chair2, chair3; // Variables to store the chair models
 let pcModel, monitorModel, headsetModel, monitorModel2, monitorModel3; 
-let pcModel1, pcModel2, pcModel3, pcWhite;
+let pcModel1, pcModel2, pcModel3, pcWhite2, pcWhite1, pcWhite3;
 // Get the hero section
 
 // Load gaming chair models
@@ -94,11 +94,23 @@ loader.load('models/black_pc.glb', function (gltf) {
 
 });
 loader.load('models/pc3.glb', function (gltf) {
-    pcWhite = gltf.scene.clone();
-    pcWhite.scale.set(-6,0,0);
-    pcWhite.rotation.set(0,1.6,0);
-    pcWhite.position.set(-3,2.6,0); // Position the PC on the left side of the table
-    scene.add(pcWhite);
+    pcWhite1 = gltf.scene.clone();
+    pcWhite1.scale.set(0,0,0);
+    pcWhite1.rotation.set(0,1.6,0)
+    pcWhite1.position.set(3,2.6,0); // Position the PC on the left side of the table
+    scene.add(pcWhite1);
+
+    pcWhite2 = gltf.scene.clone();
+    pcWhite2.scale.set(-6,0,0);
+    pcWhite2.rotation.set(0,1.6,0);
+    pcWhite2.position.set(-3,2.6,0); // Position the PC on the left side of the table
+    scene.add(pcWhite2);
+
+    pcWhite3 = gltf.scene.clone();
+    pcWhite3.scale.set(0,0,0);
+    pcWhite3.rotation.set(0,1.6,0)
+    pcWhite3.position.set(0,2.6,0); // Position the PC on the left side of the table
+    scene.add(pcWhite3);
 
 });
 loader.load('models/monitor.glb', function (gltf) {
@@ -224,9 +236,9 @@ textRight.addEventListener('mouseenter', () => {
     gsap.to(chair3.scale, { duration: 0.5, x: 0.1, y: 0.1, z: 0.1, ease: "power2.out" });
 
     
-    gsap.to(pcModel1.scale, { duration: 0.5, x: 1.5, y: 1.5, z: 1.5, ease: "power2.out" });
-    gsap.to(pcWhite.scale, { duration: 0.5, x: 0.5, y: 0.5, z: 0.6, ease: "power2.out" });
-    gsap.to(pcModel3.scale, { duration: 0.5, x: 1.5, y: 1.5, z: 1.5, ease: "power2.out" });
+    gsap.to(pcWhite1.scale, { duration: 0.5, x: 0.5, y: 0.5, z: 0.5, ease: "power2.out" });
+    gsap.to(pcWhite2.scale, { duration: 0.5, x: 0.5, y: 0.5, z: 0.5, ease: "power2.out" });
+    gsap.to(pcWhite3.scale, { duration: 0.5, x: 0.5, y: 0.5, z: 0.5, ease: "power2.out" });
 
     gsap.to(table2.scale, { duration: 0.5, x: 1.2, y: 0.8, z: 1, ease: "power2.out" });
 
@@ -257,9 +269,9 @@ textRight.addEventListener('mouseleave', () => {
     // Reset monitorModel scale
     gsap.to(monitorModel.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
 
-    gsap.to(pcModel1.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
-    gsap.to(pcWhite.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
-    gsap.to(pcModel3.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
+    gsap.to(pcWhite1.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
+    gsap.to(pcWhite2.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
+    gsap.to(pcWhite3.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
 
     gsap.to(table2.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
 
