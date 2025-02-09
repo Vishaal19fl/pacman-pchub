@@ -54,19 +54,17 @@ loader.load('models/chair_.glb', function (obj) {
     dirLight.target = chair1; // Focus on the chair
     scene.add(dirLight);
 
+    
 
-
-
-    // chair1.traverse((child) => {
-    //     if (child.isMesh) {
-    //         child.material = new THREE.MeshStandardMaterial({
-    //             map: chairTexture,
-    //         });
-    //     }
-    // });
-
-
-
+    
+    // Convert all materials to greyscale
+    chair1.traverse((node) => {
+        if (node.isMesh) {
+            let material = node.material;
+            material.color.setRGB(0, 0, 0); // Set to grey
+            material.needsUpdate = true;
+        }
+    });
 
 
     // Second chair (left)
@@ -77,13 +75,6 @@ loader.load('models/chair_.glb', function (obj) {
     chair2.scale.set(0, 0, 0); // Start with scale 0 (hidden)
     scene.add(chair2);
 
-    // chair2.traverse((child) => {
-    //     if (child.isMesh) {
-    //         child.material = new THREE.MeshStandardMaterial({
-    //             map: chairTexture,
-    //         });
-    //     }
-    // });
 
     // Third chair (right)
     chair3 = obj.scene.clone();
@@ -93,13 +84,6 @@ loader.load('models/chair_.glb', function (obj) {
     chair3.scale.set(0, 0, 0); // Start with scale 0 (hidden)
     scene.add(chair3);
 
-    // chair3.traverse((child) => {
-    //     if (child.isMesh) {
-    //         child.material = new THREE.MeshStandardMaterial({
-    //             map: chairTexture,
-    //         });
-    //     }
-    // });
 }, undefined, function (error) {
     console.error("Error loading model:", error);
 });
@@ -287,6 +271,23 @@ textRight.addEventListener('mouseenter', () => {
 
     // Background transition effect
     heroSection.classList.add('pacman-hover');
+
+    chair1.traverse((node) => {
+        if (node.isMesh) {
+            let material = node.material;
+            let targetColor = new THREE.Color(1, 1, 1); // White (original color)
+
+            gsap.to(material.color, {
+                r: targetColor.r,
+                g: targetColor.g,
+                b: targetColor.b,
+                duration: 1, // 1.5 seconds transition
+                ease: "power2.out"
+            });
+        }
+    });
+
+
 });
 
 textRight.addEventListener('mouseleave', () => {
@@ -321,6 +322,23 @@ textRight.addEventListener('mouseleave', () => {
 
     // Remove background transition effect
     heroSection.classList.remove('pacman-hover');
+
+    chair1.traverse((node) => {
+        if (node.isMesh) {
+            let material = node.material;
+            let targetColor = new THREE.Color(0,0,0); // White (original color)
+
+            gsap.to(material.color, {
+                r: targetColor.r,
+                g: targetColor.g,
+                b: targetColor.b,
+                duration: 0.5, // 1.5 seconds transition
+                ease: "power2.out"
+            });
+        }
+    });
+
+
 });
 
 // Left-side hover (hexagons and new models animations)
@@ -340,6 +358,23 @@ textLeft.addEventListener('mouseenter', () => {
 
     //image
     heroSection.style.backgroundImage = "url('/images/background/color_city.png')";
+
+    chair1.traverse((node) => {
+        if (node.isMesh) {
+            let material = node.material;
+            let targetColor = new THREE.Color(1, 1, 1); // White (original color)
+
+            gsap.to(material.color, {
+                r: targetColor.r,
+                g: targetColor.g,
+                b: targetColor.b,
+                duration: 1, // 1.5 seconds transition
+                ease: "power2.out"
+            });
+        }
+    });
+
+
 });
 
 textLeft.addEventListener('mouseleave', () => {
@@ -356,4 +391,21 @@ textLeft.addEventListener('mouseleave', () => {
 
     //image
     heroSection.style.backgroundImage = "url('/images/background/grey_city.png')";
+
+    chair1.traverse((node) => {
+        if (node.isMesh) {
+            let material = node.material;
+            let targetColor = new THREE.Color(0,0,0); // White (original color)
+
+            gsap.to(material.color, {
+                r: targetColor.r,
+                g: targetColor.g,
+                b: targetColor.b,
+                duration: 0.5, // 1.5 seconds transition
+                ease: "power2.out"
+            });
+        }
+    });
+
+
 });
