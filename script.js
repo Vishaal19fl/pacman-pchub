@@ -5,7 +5,7 @@ import { OrbitControls } from 'jsm/controls/OrbitControls.js';
 
 
 
-// Scene, Camera, Renderer
+// Scene, Camera, Renderer //////////////////////////////////////////////////////////////
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 2, 5); // Move camera higher and slightly backward
@@ -15,9 +15,42 @@ const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("tableContainer").appendChild(renderer.domElement);
 
-// Create the cuboid (wall-mounted slab)
-const geometry = new THREE.BoxGeometry(8, 0.2, 1); // Wide, thin cuboid
-const material = new THREE.MeshStandardMaterial({ color: 0x777777, metalness: 0.5, roughness: 0.7 });
+const loader = new GLTFLoader();
+const objLoader = new OBJLoader();
+const textureLoader = new THREE.TextureLoader();
+
+
+// table ////////////////////////////////////////////////////////////////////////////////
+const geometry = new THREE.BoxGeometry(8, 0.2, 1); 
+
+const woodColor = textureLoader.load('/textures/wood_diffuse.jpg'); // Diffuse texture
+const woodNormal = textureLoader.load('/textures/wood_normal.jpg'); // Normal map
+const woodRoughness = textureLoader.load('/textures/wood_roughness.jpg'); // Roughness Map
+
+
+woodColor.wrapS = woodColor.wrapT = THREE.RepeatWrapping;
+woodNormal.wrapS = woodNormal.wrapT = THREE.RepeatWrapping;
+woodRoughness.wrapS = woodRoughness.wrapT = THREE.RepeatWrapping;
+woodColor.colorSpace = THREE.SRGBColorSpace;
+
+woodColor.repeat.set(4, 2);
+woodNormal.repeat.set(4, 2);
+woodRoughness.repeat.set(4, 2);
+const light_ = new THREE.DirectionalLight(0xffffff, 5); // Increase intensity
+light_.position.set(1, 1, 1);
+scene.add(light_);
+
+
+
+const material = new THREE.MeshStandardMaterial({
+    map: woodColor,          // Base color texture
+    normalMap: woodNormal,   // Adds depth to the surface
+    roughnessMap: woodRoughness, // Controls glossiness
+    metalness: 0.0,  // Wood is not metallic
+    roughness: 1.0,  // Defined by the roughness map
+});
+
+
 const table = new THREE.Mesh(geometry, material);
 scene.add(table);
 
@@ -29,18 +62,18 @@ table2.scale.set(0,0,0);
 table.position.set(0, 0.1, 0); // Raise the table higher
 table2.position.set(0, 2.6, 0)
 
-// Load Gaming Chair Models
-const loader = new GLTFLoader();
-const objLoader = new OBJLoader();
-const textureLoader = new THREE.TextureLoader();
-let chair1, chair2, chair3; // Variables to store the chair models
+// model variables //////////////////////////////////////////////////////////
+
+let chair1, chair2, chair3; 
 let pcModel, monitorModel, headsetModel, monitorModel2, monitorModel3; 
 let pcModel1, pcModel2, pcModel3, pcWhite2, pcWhite1, pcWhite3;
-// Get the hero section
-
-// Load gaming chair models
 const chairTexture = textureLoader.load('textures/chair_diffuse.png'); 
 chairTexture.colorSpace = THREE.SRGBColorSpace;
+
+
+
+// chairs ///////////////////////////////////////////////////////////////////
+
 loader.load('models/chair_.glb', function (obj) {
     // First chair (center)
     chair1 = obj.scene.clone();
@@ -53,9 +86,6 @@ loader.load('models/chair_.glb', function (obj) {
     dirLight.position.set(0, 0, 3); // Light source above and slightly to the side
     dirLight.target = chair1; // Focus on the chair
     scene.add(dirLight);
-
-    
-
     
     // Convert all materials to greyscale
     chair1.traverse((node) => {
@@ -65,7 +95,6 @@ loader.load('models/chair_.glb', function (obj) {
             material.needsUpdate = true;
         }
     });
-
 
     // Second chair (left)
     chair2 = obj.scene.clone();
@@ -88,56 +117,59 @@ loader.load('models/chair_.glb', function (obj) {
     console.error("Error loading model:", error);
 });
 
-// Load PC and monitor models
+// Load PC models //////////////////////////////////////////////////////////////
 loader.load('models/black_pc.glb', function (gltf) {
     pcModel = gltf.scene.clone();
     pcModel.scale.set(0,0,0);
     pcModel.rotation.set(0,0,0)
-    pcModel.position.set(-2, 0.2, 0.1); // Position the PC on the left side of the table
+    pcModel.position.set(-2, 0.2, 0.1); 
     scene.add(pcModel);
 
     
     pcModel1 = gltf.scene.clone();
     pcModel1.scale.set(0,0,0);
     pcModel1.rotation.set(0,4.7,0)
-    pcModel1.position.set(3,2.6,0); // Position the PC on the left side of the table
+    pcModel1.position.set(3,2.6,0); 
     scene.add(pcModel1);
     
     pcModel2 = gltf.scene.clone();
     pcModel2.scale.set(0,0,0);
     pcModel2.rotation.set(0,4.7,0)
-    pcModel2.position.set(-3,2.6,0); // Position the PC on the left side of the table
+    pcModel2.position.set(-3,2.6,0); 
     scene.add(pcModel2);
 
     pcModel3 = gltf.scene.clone();
     pcModel3.scale.set(0,0,0);
     pcModel3.rotation.set(0,4.7,0)
-    pcModel3.position.set(0,2.6,0); // Position the PC on the left side of the table
+    pcModel3.position.set(0,2.6,0); 
     scene.add(pcModel3);
-
-
 
 });
 loader.load('models/pc3.glb', function (gltf) {
     pcWhite1 = gltf.scene.clone();
     pcWhite1.scale.set(0,0,0);
     pcWhite1.rotation.set(0,1.6,0)
-    pcWhite1.position.set(3,2.6,0); // Position the PC on the left side of the table
+    pcWhite1.position.set(3,2.6,0); 
     scene.add(pcWhite1);
 
     pcWhite2 = gltf.scene.clone();
     pcWhite2.scale.set(-6,0,0);
     pcWhite2.rotation.set(0,1.6,0);
-    pcWhite2.position.set(-3,2.6,0); // Position the PC on the left side of the table
+    pcWhite2.position.set(-3,2.6,0); 
     scene.add(pcWhite2);
 
     pcWhite3 = gltf.scene.clone();
     pcWhite3.scale.set(0,0,0);
     pcWhite3.rotation.set(0,1.6,0)
-    pcWhite3.position.set(0,2.6,0); // Position the PC on the left side of the table
+    pcWhite3.position.set(0,2.6,0); 
     scene.add(pcWhite3);
 
 });
+
+
+
+// Load monitor models //////////////////////////////////////////////////////////////
+
 loader.load('models/monitor.glb', function (gltf) {
     // Monitor Model 1
     monitorModel = gltf.scene.clone();
@@ -169,6 +201,7 @@ loader.load('models/headset.glb', function (gltf) {
     scene.add(headsetModel);
 });
 
+
 // Helper function to apply material to a chair or model
 function delete_old_material(object) {
     const material = new THREE.MeshStandardMaterial({ color: 0x808080, roughness: 0.7, metalness: 0.3 });
@@ -179,7 +212,7 @@ function delete_old_material(object) {
     });
 }
 
-// Lighting
+// Lighting ////////////////////////////////////////////////////////////
 const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(5, 5, 5);
 scene.add(light);
@@ -203,6 +236,8 @@ function animate() {
 }
 animate();
 
+
+// Hexagon ////////////////////////////////////////////////////////////////////////
 
 const hexagonGeometry = new THREE.CylinderGeometry(1, 1, 0.1, 6); // Hexagon shape
 const hexagonMaterial = new THREE.MeshStandardMaterial({ color: 0xaaaaaa, roughness: 0.7, metalness: 0.3 });
@@ -232,13 +267,15 @@ hexagon3.scale.set(0, 0, 0);
 scene.add(hexagon3);
 hexagons.push(hexagon3);
 
-// GSAP Animation for Table, Chairs, Hexagons, and Models
+
+
+
+// GSAP Animation for Table, Chairs, Hexagons, and Models/////////////////////////////////////////
 const textRight = document.querySelector('.text-right');
 const textLeft = document.querySelector('.text-left');
 const heroSection = document.querySelector('.hero'); // Select the hero section
 
-// Right-side hover (chair animations + background change)
-// Right-side hover (chair animations + background change)
+// Right-side hover (chair animations + background change)///////////////////////////////////
 textRight.addEventListener('mouseenter', () => {
     // GSAP animations for table scaling
     gsap.to(table.scale, { duration: 0.5, x: 1.45, ease: "power2.out" });
@@ -341,7 +378,7 @@ textRight.addEventListener('mouseleave', () => {
 
 });
 
-// Left-side hover (hexagons and new models animations)
+// Left-side hover (hexagons and new models animations) ///////////////////////////////////////////
 textLeft.addEventListener('mouseenter', () => {
     // Animate hexagons to appear
     gsap.to(table.scale, { duration: 0.5, x: 0.85, ease: "power2.out" });
