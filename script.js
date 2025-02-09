@@ -330,6 +330,9 @@ textLeft.addEventListener('mouseenter', () => {
     gsap.to(pcModel.scale, { duration: 0.5, x: 2, y: 2, z: 2, ease: "power2.out" });
     gsap.to(monitorModel.scale, { duration: 0.5, x: 0.0035, y: 0.0035, z: 0.0035, ease: "power2.out" });
     gsap.to(headsetModel.scale, { duration: 0.5, x: 4.8, y: 4.8, z: 4.8, ease: "power2.out" });
+
+    //image
+    heroSection.style.backgroundImage = "url('/images/background/color_city.png')";
 });
 
 textLeft.addEventListener('mouseleave', () => {
@@ -343,4 +346,7 @@ textLeft.addEventListener('mouseleave', () => {
     gsap.to(pcModel.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
     gsap.to(monitorModel.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
     gsap.to(headsetModel.scale, { duration: 0.5, x: 0, y: 0, z: 0, ease: "power2.out" });
+
+    //image
+    heroSection.style.backgroundImage = "url('/images/background/grey_city.png')";
 });
