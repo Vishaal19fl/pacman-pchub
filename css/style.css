@@ -706,12 +706,14 @@ header .header-col.mid .social-icons {
   overflow: visible;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at bottom center, #e0e0e0, #a0a0a0, #606060, #303030);
+  background: url('../images/background/grey_city.png') no-repeat center center/cover;
   position: relative;
-  transition: background 5s ease-in-out;
+  transition: background-image 0.5s ease-in-out;
 }
 
-/* Default background */
+
+
+/* Default background
 .hero::before {
   content: "";
   position: absolute;
@@ -720,16 +722,16 @@ header .header-col.mid .social-icons {
   radial-gradient(circle at 20% 90%, rgba(0, 0, 0, 0.7), transparent 70%),
   radial-gradient(circle at 80% 90%, rgba(0, 0, 0, 0.7), transparent 70%); 
   background-blend-mode: overlay;
-  background-size: cover;/* Replace with default background */
+  background-size: cover;
   background-size: cover;
   background-position: center;
   transition: background 2s ease-in-out;
   z-index: -1;
   opacity: 1;
-}
+} */
 
 /* Hover background */
-.hero::after {
+/* .hero::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -742,13 +744,13 @@ header .header-col.mid .social-icons {
 }
 
 /* Black vignette effect at the bottom left and right */
-.hero::before {
+/* .hero::before {
   background: radial-gradient(circle at bottom center, #e0e0e0, #a0a0a0, #606060, #303030), 
     radial-gradient(circle at 20% 90%, rgba(0, 0, 0, 0.7), transparent 70%),
     radial-gradient(circle at 80% 90%, rgba(0, 0, 0, 0.7), transparent 70%);
   background-blend-mode: overlay;
   background-size: cover;
-}
+}  */
 
 
 /* On hover, fade out old bg and fade in new bg */
@@ -786,6 +788,10 @@ header .header-col.mid .social-icons {
   background: linear-gradient(to bottom, #000000, #FFD700); /* Black to Deep Yellow gradient */
   transition: transform 0.3s ease, text-shadow 0.5s ease;
   
+}
+
+.text-left:hover ~ .hero {
+  background: url('images/background/color_city.png') no-repeat center center/cover;
 }
 
 /* Hover effect */
@@ -6281,7 +6287,7 @@ i.font60 {
 
 .ul-style-4 li {
   margin: 2px 0 2px 0;
-  display: ;
+  /* display: ; */
   font-weight: 500;
 }
 
@@ -6883,8 +6889,8 @@ i.font60 {
 }
 
 .pricing-s2.text-light .top .price,
-.pricing-s2.text-white .top .price,
-  {
+.pricing-s2.text-white .top .price
+{
   color: #ffffff;
 }
 
@@ -11876,7 +11882,8 @@ footer .widget{
   border-color: #555;
 }
 
-.widget_tags li a:hover border-color: #eceff3;
+.widget_tags li a:hover{
+   border-color: #eceff3;
 }
 
 footer .widget {
@@ -12273,7 +12280,7 @@ i.bg-color-secondary {
 
 
 .de-step-s1 {
-  overflow: ;
+  /* overflow: ; */
   position: relative;
   padding: 45px;
   border-radius: 20px;
@@ -12396,7 +12403,7 @@ i.bg-color-secondary {
 
 
 .owl-carousel.no-hide .owl-stage-outer{
-  overflow: visible; !important;
+  overflow: visible !important;
 }
 
 .c-item{
@@ -19459,7 +19466,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {

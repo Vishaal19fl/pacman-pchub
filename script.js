@@ -1,5 +1,9 @@
 import * as THREE from "three";
 import { GLTFLoader } from "jsm/loaders/GLTFLoader.js";
+import { OBJLoader } from 'jsm/loaders/OBJLoader.js';
+import { OrbitControls } from 'jsm/controls/OrbitControls.js';
+
+
 
 // Scene, Camera, Renderer
 const scene = new THREE.Scene();
@@ -27,38 +31,68 @@ table2.position.set(0, 2.6, 0)
 
 // Load Gaming Chair Models
 const loader = new GLTFLoader();
+const objLoader = new OBJLoader();
+const textureLoader = new THREE.TextureLoader();
 let chair1, chair2, chair3; // Variables to store the chair models
 let pcModel, monitorModel, headsetModel, monitorModel2, monitorModel3; 
 let pcModel1, pcModel2, pcModel3, pcWhite2, pcWhite1, pcWhite3;
 // Get the hero section
 
 // Load gaming chair models
-loader.load('models/gaming_chair.glb', function (gltf) {
+objLoader.load('models/chair.obj', function (obj) {
     // First chair (center)
-    chair1 = gltf.scene.clone();
-    applyMaterial(chair1);
+    const chairTexture = textureLoader.load('textures/chair_diffuse.png'); 
+    chairTexture.colorSpace = THREE.SRGBColorSpace;
+
+    chair1 = obj.clone();
     chair1.scale.set(0.1, 0.1, 0.1);
     chair1.position.set(0, 0.5, 2);
     chair1.rotation.y = Math.PI;
     scene.add(chair1);
 
+    chair1.traverse((child) => {
+        if (child.isMesh) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: chairTexture,
+            });
+        }
+    });
+
+
+
+
+
     // Second chair (left)
-    chair2 = gltf.scene.clone();
-    applyMaterial(chair2);
+    chair2 = obj.clone();
     chair2.scale.set(0.1, 0.1, 0.02);
     chair2.position.set(-2.6, 0.5, 2); // Position to the left
     chair2.rotation.y = Math.PI;
     chair2.scale.set(0, 0, 0); // Start with scale 0 (hidden)
     scene.add(chair2);
 
+    chair2.traverse((child) => {
+        if (child.isMesh) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: chairTexture,
+            });
+        }
+    });
+
     // Third chair (right)
-    chair3 = gltf.scene.clone();
-    applyMaterial(chair3);
+    chair3 = obj.clone();
     chair3.scale.set(0.1, 0.1, 0.02);
     chair3.position.set(2.6, 0.5, 2); // Position to the right
     chair3.rotation.y = Math.PI;
     chair3.scale.set(0, 0, 0); // Start with scale 0 (hidden)
     scene.add(chair3);
+
+    chair3.traverse((child) => {
+        if (child.isMesh) {
+            child.material = new THREE.MeshStandardMaterial({
+                map: chairTexture,
+            });
+        }
+    });
 }, undefined, function (error) {
     console.error("Error loading model:", error);
 });
@@ -145,7 +179,7 @@ loader.load('models/headset.glb', function (gltf) {
 });
 
 // Helper function to apply material to a chair or model
-function applyMaterial(object) {
+function delete_old_material(object) {
     const material = new THREE.MeshStandardMaterial({ color: 0x808080, roughness: 0.7, metalness: 0.3 });
     object.traverse((child) => {
         if (child.isMesh) {
@@ -168,6 +202,8 @@ window.addEventListener("resize", () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 });
+
+
 
 // Animation Loop
 function animate() {
