@@ -39,60 +39,67 @@ let pcModel1, pcModel2, pcModel3, pcWhite2, pcWhite1, pcWhite3;
 // Get the hero section
 
 // Load gaming chair models
-objLoader.load('models/chair.obj', function (obj) {
+const chairTexture = textureLoader.load('textures/chair_diffuse.png'); 
+chairTexture.colorSpace = THREE.SRGBColorSpace;
+loader.load('models/chair_.glb', function (obj) {
     // First chair (center)
-    const chairTexture = textureLoader.load('textures/chair_diffuse.png'); 
-    chairTexture.colorSpace = THREE.SRGBColorSpace;
-
-    chair1 = obj.clone();
-    chair1.scale.set(0.1, 0.1, 0.1);
-    chair1.position.set(0, 0.5, 2);
+    chair1 = obj.scene.clone();
+    chair1.scale.set(0.008, 0.008, 0.008);
+    chair1.position.set(0, -0.5, 2);
     chair1.rotation.y = Math.PI;
     scene.add(chair1);
 
-    chair1.traverse((child) => {
-        if (child.isMesh) {
-            child.material = new THREE.MeshStandardMaterial({
-                map: chairTexture,
-            });
-        }
-    });
+    const dirLight = new THREE.DirectionalLight(0xffffff, 3); // Bright white light
+    dirLight.position.set(0, 0, 3); // Light source above and slightly to the side
+    dirLight.target = chair1; // Focus on the chair
+    scene.add(dirLight);
+
+
+
+
+    // chair1.traverse((child) => {
+    //     if (child.isMesh) {
+    //         child.material = new THREE.MeshStandardMaterial({
+    //             map: chairTexture,
+    //         });
+    //     }
+    // });
 
 
 
 
 
     // Second chair (left)
-    chair2 = obj.clone();
-    chair2.scale.set(0.1, 0.1, 0.02);
-    chair2.position.set(-2.6, 0.5, 2); // Position to the left
+    chair2 = obj.scene.clone();
+    chair2.scale.set(0.008, 0.008, 0.008);
+    chair2.position.set(-2.6, -0.5, 2);
     chair2.rotation.y = Math.PI;
     chair2.scale.set(0, 0, 0); // Start with scale 0 (hidden)
     scene.add(chair2);
 
-    chair2.traverse((child) => {
-        if (child.isMesh) {
-            child.material = new THREE.MeshStandardMaterial({
-                map: chairTexture,
-            });
-        }
-    });
+    // chair2.traverse((child) => {
+    //     if (child.isMesh) {
+    //         child.material = new THREE.MeshStandardMaterial({
+    //             map: chairTexture,
+    //         });
+    //     }
+    // });
 
     // Third chair (right)
-    chair3 = obj.clone();
-    chair3.scale.set(0.1, 0.1, 0.02);
-    chair3.position.set(2.6, 0.5, 2); // Position to the right
+    chair3 = obj.scene.clone();
+    chair3.scale.set(0.008, 0.008, 0.008);
+    chair3.position.set(2.6, -0.5, 2);
     chair3.rotation.y = Math.PI;
     chair3.scale.set(0, 0, 0); // Start with scale 0 (hidden)
     scene.add(chair3);
 
-    chair3.traverse((child) => {
-        if (child.isMesh) {
-            child.material = new THREE.MeshStandardMaterial({
-                map: chairTexture,
-            });
-        }
-    });
+    // chair3.traverse((child) => {
+    //     if (child.isMesh) {
+    //         child.material = new THREE.MeshStandardMaterial({
+    //             map: chairTexture,
+    //         });
+    //     }
+    // });
 }, undefined, function (error) {
     console.error("Error loading model:", error);
 });
@@ -265,11 +272,11 @@ textRight.addEventListener('mouseenter', () => {
 
     // Slide in the left chair (chair2)
     gsap.to(chair2.position, { duration: 0.5, x: -2.6, ease: "power2.out" });
-    gsap.to(chair2.scale, { duration: 0.5, x: 0.1, y: 0.1, z: 0.1, ease: "power2.out" });
+    gsap.to(chair2.scale, { duration: 0.5, x: 0.008, y: 0.008, z: 0.008, ease: "power2.out" });
 
     // Slide in the right chair (chair3)
     gsap.to(chair3.position, { duration: 0.5, x: 2.6, ease: "power2.out" });
-    gsap.to(chair3.scale, { duration: 0.5, x: 0.1, y: 0.1, z: 0.1, ease: "power2.out" });
+    gsap.to(chair3.scale, { duration: 0.5, x: 0.008, y: 0.008, z: 0.008, ease: "power2.out" });
 
     
     gsap.to(pcWhite1.scale, { duration: 0.5, x: 0.5, y: 0.5, z: 0.5, ease: "power2.out" });
