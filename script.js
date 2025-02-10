@@ -59,8 +59,8 @@ scene.add(table2);
 table2.scale.set(0,0,0);
 
 // Position the table
-table.position.set(0, 0.1, 0); // Raise the table higher
-table2.position.set(0, 2.6, 0)
+table.position.set(0, 0.1, 0); 
+table2.position.set(0, 2.6, 0);
 
 // model variables //////////////////////////////////////////////////////////
 
@@ -72,7 +72,7 @@ chairTexture.colorSpace = THREE.SRGBColorSpace;
 
 
 
-// chairs ///////////////////////////////////////////////////////////////////
+//////////////////////////////// chairs ///////////////////////////////////////
 
 loader.load('models/chair_.glb', function (obj) {
     // First chair (center)
@@ -305,7 +305,7 @@ textRight.addEventListener('mouseenter', () => {
     gsap.to(pcWhite3.scale, { duration: 0.5, x: 0.5, y: 0.5, z: 0.5, ease: "power2.out" });
 
     gsap.to(table2.scale, { duration: 0.5, x: 1.2, y: 0.8, z: 1, ease: "power2.out" });
-
+    heroSection.style.backgroundImage = "url('/images/pacmanbg2.png')";
     // Background transition effect
     heroSection.classList.add('pacman-hover');
 
