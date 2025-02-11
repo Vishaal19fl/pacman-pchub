@@ -698,7 +698,72 @@ header .header-col.mid .social-icons {
 #profile_banner {
   min-height: 360px;
 }
+/* Separator styles */
+.separator {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  width: 2px;
+  z-index: 10;
+}
 
+.separator-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+      transparent 0%,
+      #FFD700 20%,
+      #FFD700 80%,
+      transparent 100%
+  );
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  z-index: 10;
+}
+
+.separator-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: #000;
+  border: 2px solid #FFD700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  z-index: 10;
+}
+
+
+.separator-text {
+  color: #FFD700;
+  font-family: "Oxanium", serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+
+@keyframes separatorSlideOut {
+  0% {
+      opacity: 1;
+      transform: translateX(-50%) scaleY(1);
+  }
+  100% {
+      opacity: 1;
+      transform: translateX(-100%) ;
+  }
+}
+/* Remove or comment out the existing hero background */
 .hero {
   width: 100%;
   height: 100vh;
@@ -706,54 +771,72 @@ header .header-col.mid .social-icons {
   overflow: visible;
   justify-content: center;
   align-items: center;
-  background: url('https://v.etsystatic.com/video/upload/q_auto/Animated-background-cyberpunk_cbnylf.jpg') no-repeat center center/cover;
   position: relative;
   transition: background-image 0.5s ease-in-out;
 }
 
-
-
-/* Default background
-.hero::before {
-  content: "";
+/* Background animations */
+.bg-left, .bg-right {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at bottom center, #e0e0e0, #a0a0a0, #606060, #303030),radial-gradient(circle at bottom center, #e0e0e0, #a0a0a0, #606060, #303030), 
-  radial-gradient(circle at 20% 90%, rgba(0, 0, 0, 0.7), transparent 70%),
-  radial-gradient(circle at 80% 90%, rgba(0, 0, 0, 0.7), transparent 70%); 
-  background-blend-mode: overlay;
-  background-size: cover;
-  background-size: cover;
-  background-position: center;
-  transition: background 2s ease-in-out;
-  z-index: -1;
-  opacity: 1;
-} */
-
-/* Hover background */
-/* .hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("/images/bg2.png");
-  background-size: cover;
-  background-position: center;
-  transition: opacity 5s ease-in-out;
-  z-index: -1;
-  opacity: 0;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transition: transform 0.8s ease-in-out;
 }
 
-/* Black vignette effect at the bottom left and right */
-/* .hero::before {
-  background: radial-gradient(circle at bottom center, #e0e0e0, #a0a0a0, #606060, #303030), 
-    radial-gradient(circle at 20% 90%, rgba(0, 0, 0, 0.7), transparent 70%),
-    radial-gradient(circle at 80% 90%, rgba(0, 0, 0, 0.7), transparent 70%);
-  background-blend-mode: overlay;
+.bg-left {
+  left: 0;
+  background: url('/images/homebgbnw.png') no-repeat center left;
   background-size: cover;
-}  */
+  z-index: 1;
+}
+
+.bg-right {
+  right: 0;
+  background: url(/images/pacmanbgbnw.png) no-repeat center right;
+  background-size: cover;
+  z-index: 1;
+}
+
+/* Modified hover states */
+.hero.home-hover .bg-right {
+
+  transform: translateX(100%);
+  
+}
+
+.hero.home-hover .bg-left {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.hero.pacman-hover .bg-left {
+  
+  transform: translateX(-100%);
+  
+}
+
+.hero.pacman-hover .bg-right {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+/* Make sure other elements stay on top */
+#tableContainer {
+  position: relative;
+  z-index: 5;
+}
+
+.text-left, .text-right {
+  z-index: 15;
+}
 
 
-/* On hover, fade out old bg and fade in new bg */
+
+
+
 .hero.pacman-hover::before {
   opacity: 0;
 }
@@ -761,11 +844,7 @@ header .header-col.mid .social-icons {
 .hero.pacman-hover::after {
   opacity: 1;
 }
-.hero.pacman-hover {
-  background: url("/images/cyber.jpg");
-  background-size: cover;
-  transition: background 5s ease-in-out;
-}
+
 .hero.home-hover {
   background: radial-gradient(circle at bottom center, #7f0082, #ff63e8, #101010, #000000);
   transition: background 0.8s ease-in-out;
@@ -790,9 +869,6 @@ header .header-col.mid .social-icons {
   
 }
 
-.text-left:hover ~ .hero {
-  background: url("images/cyber.jpg") no-repeat center center/cover;
-}
 
 /* Hover effect */
 .text-left:hover, .text-right:hover {
