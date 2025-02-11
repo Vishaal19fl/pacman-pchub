@@ -278,6 +278,12 @@ textRight.addEventListener("mouseenter", () => {
     x: "-100vw",
     ease: "power2.inOut",
   });
+  gsap.to(".text-left", {
+    duration: 0.8,
+    opacity: 0,
+    x: "-100vw",
+    ease: "power2.inOut",
+  });
   // GSAP animations for table scaling
   gsap.to(table.scale, { duration: 0.5, x: 1.45, ease: "power2.out" });
 
@@ -289,7 +295,7 @@ textRight.addEventListener("mouseenter", () => {
     z: 0.0035,
     ease: "power2.out",
   });
-
+ 
   // Slide in monitorModel2 from the left and place it on the table
   gsap.fromTo(
     monitorModel2.position,
@@ -392,6 +398,12 @@ textRight.addEventListener("mouseenter", () => {
 
 textRight.addEventListener("mouseleave", () => {
   gsap.to(".separator", {
+    duration: 0.8,
+    opacity: 1,
+    x: "0",
+    ease: "power2.inOut",
+  });
+  gsap.to(".text-left", {
     duration: 0.8,
     opacity: 1,
     x: "0",
@@ -507,6 +519,12 @@ textLeft.addEventListener("mouseenter", () => {
     x: "100vw",
     ease: "power2.inOut",
   });
+  gsap.to(".text-right", {
+    duration: 0.8,
+    opacity: 0,
+    x: "100vw",
+    ease: "power2.inOut",
+  });
   // Animate hexagons to appear
   gsap.to(table.scale, { duration: 0.5, x: 0.85, ease: "power2.out" });
 
@@ -561,7 +579,7 @@ textLeft.addEventListener("mouseenter", () => {
 
   //image
   heroSection.style.backgroundImage =
-    "url('/images/homebg3.png')";
+    "url('/images/homebg4.png')";
     heroSection.style.backgroundRepeat = "no-repeat";
   heroSection.style.backgroundPosition = "center left";
 
@@ -583,6 +601,12 @@ textLeft.addEventListener("mouseenter", () => {
 
 textLeft.addEventListener("mouseleave", () => {
   gsap.to(".separator", {
+    duration: 0.8,
+    opacity: 1,
+    x: "0",
+    ease: "power2.inOut",
+  });
+  gsap.to(".text-right", {
     duration: 0.8,
     opacity: 1,
     x: "0",
