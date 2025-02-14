@@ -71,12 +71,12 @@ chairTexture.colorSpace = THREE.SRGBColorSpace;
 //////////////////////////////// chairs ///////////////////////////////////////
 
 loader.load(
-  "models/chair_.glb",
+  "models/gaming_chair.glb",
   function (obj) {
     // First chair (center)
     chair1 = obj.scene.clone();
-    chair1.scale.set(0.008, 0.008, 0.008);
-    chair1.position.set(0, -0.5, 2);
+    chair1.scale.set(0.1, 0.1, 0.1);
+    chair1.position.set(0, 0.5, 2);
     chair1.rotation.y = Math.PI;
     scene.add(chair1);
 
@@ -97,7 +97,7 @@ loader.load(
     // Second chair (left)
     chair2 = obj.scene.clone();
     chair2.scale.set(0.008, 0.008, 0.008);
-    chair2.position.set(-2.6, -0.5, 2);
+    chair2.position.set(-2.6, 0.5, 2);
     chair2.rotation.y = Math.PI;
     chair2.scale.set(0, 0, 0); // Start with scale 0 (hidden)
     scene.add(chair2);
@@ -105,7 +105,7 @@ loader.load(
     // Third chair (right)
     chair3 = obj.scene.clone();
     chair3.scale.set(0.008, 0.008, 0.008);
-    chair3.position.set(2.6, -0.5, 2);
+    chair3.position.set(2.6, 0.5, 2);
     chair3.rotation.y = Math.PI;
     chair3.scale.set(0, 0, 0); // Start with scale 0 (hidden)
     scene.add(chair3);
@@ -331,9 +331,9 @@ textRight.addEventListener("mouseenter", () => {
   gsap.to(chair2.position, { duration: 0.5, x: -2.6, ease: "power2.out" });
   gsap.to(chair2.scale, {
     duration: 0.5,
-    x: 0.008,
-    y: 0.008,
-    z: 0.008,
+    x: 0.1,
+    y: 0.1,
+    z: 0.1,
     ease: "power2.out",
   });
 
@@ -341,9 +341,9 @@ textRight.addEventListener("mouseenter", () => {
   gsap.to(chair3.position, { duration: 0.5, x: 2.6, ease: "power2.out" });
   gsap.to(chair3.scale, {
     duration: 0.5,
-    x: 0.008,
-    y: 0.008,
-    z: 0.008,
+    x: 0.1,
+    y: 0.1,
+    z: 0.1,
     ease: "power2.out",
   });
 
