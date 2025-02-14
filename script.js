@@ -164,26 +164,29 @@ loader.load("models/pc3.glb", function (gltf) {
 
 // Load monitor models //////////////////////////////////////////////////////////////
 
-loader.load("models/monitor.glb", function (gltf) {
+
+
+
+loader.load("models/pc.glb", function (gltf) {
   // Monitor Model 1
   monitorModel = gltf.scene.clone();
   monitorModel.scale.set(0, 0, 0);
-  monitorModel.rotation.set(0, 4.76, 0);
-  monitorModel.position.set(0.2, 0.5, 0.1); // Position the monitor on the right side of the table
+  monitorModel.rotation.set(0,4.9,0);
+  monitorModel.position.set(-0.8, -2.5, 0.9); // Position the monitor on the right side of the table
   scene.add(monitorModel);
 
   // Monitor Model 2 (with left tilt)
   monitorModel2 = gltf.scene.clone();
   monitorModel2.scale.set(0, 0, 0);
-  monitorModel2.rotation.set(-0.1, 4.85, -0.05); // Left tilt (negative X rotation)
-  monitorModel2.position.set(-0.2, 0.5, 0.3); // Position the monitor on the left side of the table
+  monitorModel2.rotation.set(0,5,0); // Left tilt (negative X rotation)
+  monitorModel2.position.set(8, -2.5, 0.9); // Position the monitor on the left side of the table
   scene.add(monitorModel2);
 
   // Monitor Model 3 (with right tilt)
   monitorModel3 = gltf.scene.clone();
   monitorModel3.scale.set(0, 0, 0);
-  monitorModel3.rotation.set(-0.1, 4.55, -0.05); // Right tilt (positive X rotation)
-  monitorModel3.position.set(0.2, 0.5, 0.3); // Position the monitor further to the right
+  monitorModel3.rotation.set(-0.1, 4.85, -0.05); // Right tilt (positive X rotation)
+  monitorModel3.position.set(0.2, -2.5, 0.9); // Position the monitor further to the right
   scene.add(monitorModel3);
 });
 
@@ -290,9 +293,9 @@ textRight.addEventListener("mouseenter", () => {
   // Scale and position monitorModel
   gsap.to(monitorModel.scale, {
     duration: 0.5,
-    x: 0.0035,
-    y: 0.0035,
-    z: 0.0035,
+    x: 1,
+    y: 1,
+    z: 1,
     ease: "power2.out",
   });
  
@@ -304,9 +307,9 @@ textRight.addEventListener("mouseenter", () => {
   ); // Adjust x position as needed
   gsap.to(monitorModel2.scale, {
     duration: 0.5,
-    x: 0.0035,
-    y: 0.0035,
-    z: 0.0035,
+    x: 1,
+    y: 1,
+    z: 1,
     ease: "power2.out",
   });
 
@@ -318,9 +321,9 @@ textRight.addEventListener("mouseenter", () => {
   ); // Adjust x position as needed
   gsap.to(monitorModel3.scale, {
     duration: 0.5,
-    x: 0.0035,
-    y: 0.0035,
-    z: 0.0035,
+    x: 1,
+    y: 1,
+    z: 1,
     ease: "power2.out",
   });
 
@@ -564,9 +567,9 @@ textLeft.addEventListener("mouseenter", () => {
   });
   gsap.to(monitorModel.scale, {
     duration: 0.5,
-    x: 0.0035,
-    y: 0.0035,
-    z: 0.0035,
+    x: 1,
+    y: 1,
+    z: 1,
     ease: "power2.out",
   });
   gsap.to(headsetModel.scale, {
