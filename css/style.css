@@ -855,6 +855,7 @@ header .header-col.mid .social-icons {
   background: radial-gradient(circle at bottom center, #7f0082, #ff63e8, #101010, #000000);
   transition: background 0.8s ease-in-out;
 }
+
 /* Left and Right Text */
 .text-left, .text-right {
   position: absolute;
@@ -872,9 +873,6 @@ header .header-col.mid .social-icons {
   background: linear-gradient(to bottom, #000000, #FFD700); /* Black to Deep Yellow gradient */
   transition: transform 0.3s ease, text-shadow 0.5s ease;
   letter-spacing: 0px;
-}
-.text-center {
-  text-align: center;
 }
 
 .subtext {
