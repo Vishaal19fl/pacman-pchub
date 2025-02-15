@@ -873,7 +873,15 @@ header .header-col.mid .social-icons {
   transition: transform 0.3s ease, text-shadow 0.5s ease;
   letter-spacing: 0px;
 }
+.text-center {
+  text-align: center;
+}
 
+.subtext {
+  font-size: 1rem; /* Adjust as needed */
+  color: #666; /* Adjust as needed */
+  margin-top: 10px; /* Adjust as needed */
+}
 
 /* Hover effect */
 .text-left:hover, .text-right:hover {

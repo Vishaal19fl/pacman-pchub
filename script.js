@@ -76,7 +76,7 @@ loader.load(
     // First chair (center)
     chair1 = obj.scene.clone();
     chair1.scale.set(0.1, 0.1, 0.1);
-    chair1.position.set(0, 0.5, 2);
+    chair1.position.set(-0.05, 0.5, 2);
     chair1.rotation.y = Math.PI;
     scene.add(chair1);
 
@@ -171,22 +171,22 @@ loader.load("models/pc.glb", function (gltf) {
   // Monitor Model 1
   monitorModel = gltf.scene.clone();
   monitorModel.scale.set(0, 0, 0);
-  monitorModel.rotation.set(0,4.9,0);
-  monitorModel.position.set(-0.8, -2.5, 0.9); // Position the monitor on the right side of the table
+  monitorModel.rotation.set(0,4.85,0);
+  monitorModel.position.set(-0.8, -2.25, 1.2); // Position the monitor on the right side of the table
   scene.add(monitorModel);
 
   // Monitor Model 2 (with left tilt)
   monitorModel2 = gltf.scene.clone();
   monitorModel2.scale.set(0, 0, 0);
   monitorModel2.rotation.set(0,5,0); // Left tilt (negative X rotation)
-  monitorModel2.position.set(8, -2.5, 0.9); // Position the monitor on the left side of the table
+  monitorModel2.position.set(0.8, -2.25, 1.7); // Position the monitor on the left side of the table
   scene.add(monitorModel2);
 
   // Monitor Model 3 (with right tilt)
   monitorModel3 = gltf.scene.clone();
   monitorModel3.scale.set(0, 0, 0);
-  monitorModel3.rotation.set(-0.1, 4.85, -0.05); // Right tilt (positive X rotation)
-  monitorModel3.position.set(0.2, -2.5, 0.9); // Position the monitor further to the right
+  monitorModel3.rotation.set(-0.1, 4.75, -0.05); // Right tilt (positive X rotation)
+  monitorModel3.position.set(0.8, -2.2, 1.5); // Position the monitor further to the right
   scene.add(monitorModel3);
 });
 
@@ -288,7 +288,7 @@ textRight.addEventListener("mouseenter", () => {
     ease: "power2.inOut",
   });
   // GSAP animations for table scaling
-  gsap.to(table.scale, { duration: 0.5, x: 1.45, ease: "power2.out" });
+  gsap.to(table.scale, { duration: 0.5, x: 1.45,z:1.25, ease: "power2.out" });
 
   // Scale and position monitorModel
   gsap.to(monitorModel.scale, {
@@ -302,8 +302,8 @@ textRight.addEventListener("mouseenter", () => {
   // Slide in monitorModel2 from the left and place it on the table
   gsap.fromTo(
     monitorModel2.position,
-    { x: -5 },
-    { duration: 0.5, x: -3.1, ease: "power2.out" }
+    { x: -3 },
+    { duration: 0.5, x: -3.5, ease: "power2.out" }
   ); // Adjust x position as needed
   gsap.to(monitorModel2.scale, {
     duration: 0.5,
@@ -316,8 +316,8 @@ textRight.addEventListener("mouseenter", () => {
   // Slide in monitorModel3 from the right and place it on the table
   gsap.fromTo(
     monitorModel3.position,
-    { x: 5 },
-    { duration: 0.5, x: 3.5, ease: "power2.out" }
+    { x: 3 },
+    { duration: 0.5, x: 2, ease: "power2.out" }
   ); // Adjust x position as needed
   gsap.to(monitorModel3.scale, {
     duration: 0.5,
@@ -376,7 +376,7 @@ textRight.addEventListener("mouseenter", () => {
     z: 1,
     ease: "power2.out",
   });
-  heroSection.style.backgroundImage = "url('/images/pacmanbg2.png')";
+  heroSection.style.backgroundImage = "url('/images/pacmanbg3.png')";
   heroSection.style.backgroundRepeat = "no-repeat";
   heroSection.style.backgroundPosition = "center right";
   
@@ -413,7 +413,7 @@ textRight.addEventListener("mouseleave", () => {
     ease: "power2.inOut",
   });
   // Reset GSAP animations for table scaling
-  gsap.to(table.scale, { duration: 0.5, x: 1, ease: "power2.out" });
+  gsap.to(table.scale, { duration: 0.5, x: 1,z:1, ease: "power2.out" });
 
   // Slide out monitorModel2 to the left
   gsap.to(monitorModel2.position, { duration: 0.5, x: -5, ease: "power2.out" });
@@ -529,7 +529,8 @@ textLeft.addEventListener("mouseenter", () => {
     ease: "power2.inOut",
   });
   // Animate hexagons to appear
-  gsap.to(table.scale, { duration: 0.5, x: 0.85, ease: "power2.out" });
+  gsap.to(table.scale, { duration: 0.5, x: 0.85, z: 2, ease: "power2.out" });
+
 
 //   gsap.to(hexagons[0].position, { duration: 0.5, x: 6, ease: "power2.out" });
 //   gsap.to(hexagons[0].scale, {
@@ -616,7 +617,7 @@ textLeft.addEventListener("mouseleave", () => {
     ease: "power2.inOut",
   });
   // Animate hexagons to disappear
-  gsap.to(table.scale, { duration: 0.5, x: 1, ease: "power2.out" });
+  gsap.to(table.scale, { duration: 0.5, x: 1,z:1, ease: "power2.out" });
 //   gsap.to(hexagons[0].scale, {
 //     duration: 0.5,
 //     x: 0,
